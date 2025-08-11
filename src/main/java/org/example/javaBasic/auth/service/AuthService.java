@@ -15,13 +15,13 @@ public class AuthService {
 
     @Transactional
     public void signup(AuthRequest request) {
-        Director director = new Director(request.getName());
+        Director director = new Director(request.getName(),request.getPassword());
         directorRepository.save(director);
     }
 
     @Transactional(readOnly = true)
     public AuthResponse login(AuthRequest request) {
-        Director director = directorRepository.findByName(request.getName()).orElseThrow(
+        Director director = directorRepository.findByNameAndPassword(request.getName(),request.getPassword()).orElseThrow(
                 () -> new IllegalArgumentException("없는 감독입니다.")
         );
         return new AuthResponse(director.getId());

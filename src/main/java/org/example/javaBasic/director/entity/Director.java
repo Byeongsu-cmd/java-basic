@@ -15,8 +15,10 @@ public class Director {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String password;
 
-    public Director(String name) {
+    public Director(String name, String password) {
         this.name = name;
+        this.password = password;
     }
 }
