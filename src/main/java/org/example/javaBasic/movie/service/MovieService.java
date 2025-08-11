@@ -7,7 +7,6 @@ import org.example.javaBasic.movie.dto.MovieRequest;
 import org.example.javaBasic.movie.dto.MovieResponse;
 import org.example.javaBasic.movie.entity.Movie;
 import org.example.javaBasic.movie.repository.MovieRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
