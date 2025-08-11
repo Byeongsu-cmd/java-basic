@@ -1,6 +1,7 @@
 package org.example.javaBasic.movie.controller;
 
 
+
 import lombok.RequiredArgsConstructor;
 import org.example.javaBasic.movie.dto.MovieRequest;
 import org.example.javaBasic.movie.dto.MovieResponse;
@@ -17,7 +18,7 @@ public class MovieController {
     private final MovieService movieService;
 
     @PostMapping("/directors/{directorId}/movies")
-    public MovieResponse create(
+    public ResponseEntity<MovieResponse> create(
             @RequestBody MovieRequest request,
             @PathVariable Long directorId
     ) {
@@ -30,4 +31,3 @@ public class MovieController {
     }
 
 }
-

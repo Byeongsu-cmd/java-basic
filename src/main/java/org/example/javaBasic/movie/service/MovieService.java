@@ -22,27 +22,24 @@ public class MovieService {
     private final DirectorRepository directorRepository;
 
     @Transactional
-    public ResponseEntity<MovieResponse> save(MovieRequest request,Long directorId) {
+    public MovieResponse save(MovieRequest request, Long directorId) {
         Director director = directorRepository.findById(directorId).orElseThrow(
                 () -> new IllegalArgumentException("없는 디렉터입니다.")
-                );
+        );
         Movie movie = new Movie(
                 request.getTitle(),
                 director
         );
         Movie savedMovie = movieRepository.save(movie);
-        return ResponseEntity.ok(new MovieResponse(
-                savedMovie.getId(),
-                savedMovie.getTitle()
-        ));
+        return new MovieResponse(savedMovie.getId(), savedMovie.getTitle());
     }
 
     @Transactional(readOnly = true)
-    public MovieResponse findAll(){
+    public List<MovieResponse> findAll() {
         List<Movie> movies = movieRepository.findAll();
         List<MovieResponse> dtos = new ArrayList<>();
 
-        for (Movie movie : movies){
+        for (Movie movie : movies) {
             MovieResponse movieResponse = new MovieResponse(
                     movie.getId(),
                     movie.getTitle()
