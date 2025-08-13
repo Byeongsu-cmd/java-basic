@@ -26,7 +26,9 @@ public class MovieController {
     }
 
     @GetMapping("/directors/{directorId}/movies")
-    public ResponseEntity<List<MovieResponse>> getAll() {
+    public ResponseEntity<List<MovieResponse>> getAll(
+            @PathVariable Long directorId
+    ) {
         return ResponseEntity.ok(movieService.findAll());
     }
 
